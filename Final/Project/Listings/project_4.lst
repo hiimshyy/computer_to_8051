@@ -1,0 +1,192 @@
+C51 COMPILER V9.01   PROJECT_4                                                             12/12/2023 13:04:53 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE PROJECT_4
+OBJECT MODULE PLACED IN .\Objects\project_4.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE project_4.c BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\project_4.lst) OBJEC
+                    -T(.\Objects\project_4.obj)
+
+line level    source
+
+   1          #include<reg51.h>
+   2          #include<intrins.h>
+   3          #define COMMONPORTS P0
+   4          
+   5          sbit SRCLK = P3^6;
+   6          sbit SER = P3^4;
+   7          sbit RCLK = P3^5;
+   8          bit state = 0;  //state = 0 de nhan du lieu va kiem tra. state = 1 de ghi du lieu vao bo nho
+   9          bit start_stop_state = 0;       //0 : START, 1: STOP
+  10          typedef unsigned char u8;
+  11          typedef unsigned int u16;
+  12          u8 revData;
+  13          u8 arr[8];
+  14          u16 size_data = 0;
+  15          u8 header[8] = {0x2A, 0x2A, 0x2A, 0, 0, 0, 0, 0};
+  16          //header[3] & header[4] to save size_data
+  17          //header[5] to save fps of video
+  18          u8 frame_array[8][8];
+  19          u8 code TAB[8]  = {0x7f,0xbf,0xdf,0xef,0xf7,0xfb,0xfd,0xfe};
+  20          u8 i, number_of_frame, k = 0;
+  21          
+  22          void serial_init(void){
+  23   1              /*fcrystal = 11.0592MHz*/
+  24   1              /*config timer 1*/
+  25   1              TMOD = 0x20;
+  26   1              TH1 = 0xFD;
+  27   1              SCON = 0x50;
+  28   1              TR1 = 1;
+  29   1              EA = 1;
+  30   1              ES = 1;
+  31   1      }
+  32          void reset_frame_array(void)
+  33          {
+  34   1              u8 i, j;
+  35   1              for(i = 0; i < 8; i++)
+  36   1                      for(j = 0; j < 8; j++)
+  37   1                              frame_array[i][j] = 0x00;
+  38   1      }
+  39          
+  40          void Hc595SendByte(unsigned char dat)
+  41          {
+  42   1          unsigned char a;
+  43   1          SRCLK=0;
+  44   1          RCLK=0;
+  45   1          for(a=0;a<8;a++)
+  46   1          {
+  47   2              SER=dat>>7;
+  48   2              dat<<=1;
+  49   2      
+  50   2              SRCLK=1;
+  51   2              _nop_();
+  52   2              _nop_();
+  53   2              SRCLK=0;    
+  54   2          }
+C51 COMPILER V9.01   PROJECT_4                                                             12/12/2023 13:04:53 PAGE 2   
+
+  55   1          RCLK=1;
+  56   1          _nop_();
+  57   1          _nop_();
+  58   1          RCLK=0;
+  59   1      }
+  60          
+  61          void delayMS(unsigned int time)
+  62          {
+  63   1              int i, j;
+  64   1              for(i = 0; i < time; i++)
+  65   1                      for(j = 0; j < 123; j++) {}
+  66   1      }
+  67          
+  68          void test(void)
+  69          {
+  70   1              Hc595SendByte(0x00);
+  71   1              Hc595SendByte(0xFF);
+  72   1              delayMS(200);   
+  73   1              Hc595SendByte(0x00);
+  74   1      }
+  75          
+  76          bit check_header()
+  77          {
+  78   1              u8 i;
+  79   1              bit check = 1;
+  80   1              for(i = 0; i < 3; i++)
+  81   1              {
+  82   2                      if(arr[i] != header[i])
+  83   2                      {
+  84   3                              check = 0;
+  85   3                      }
+  86   2              }
+  87   1              if(check)
+  88   1              {
+  89   2                      header[3] = arr[3];
+  90   2                      header[4] = arr[4];
+  91   2                      header[5] = arr[5];
+  92   2                      size_data = (header[4] << 8) | header[3];
+  93   2              }
+  94   1              return check;
+  95   1      }
+  96          
+  97          void serial_ISR(void) interrupt 4
+  98          {
+  99   1              if(RI == 1) {
+ 100   2                      if(state == 0){
+ 101   3                              revData = SBUF;
+ 102   3                              RI = 0;
+ 103   3                              arr[i] = revData;
+ 104   3                              i++;
+ 105   3                              if(i == 8){
+ 106   4                                      i = 0;
+ 107   4                                      if(check_header())
+ 108   4                                      {
+ 109   5                                              state = 1;
+ 110   5                                              reset_frame_array();
+ 111   5                                      }
+ 112   4                              }
+ 113   3                      }else
+ 114   2                      {
+ 115   3                              revData = SBUF;
+ 116   3                              RI = 0;
+C51 COMPILER V9.01   PROJECT_4                                                             12/12/2023 13:04:53 PAGE 3   
+
+ 117   3                              frame_array[number_of_frame][k] = revData;
+ 118   3                              k++;
+ 119   3                              if(k == 8)
+ 120   3                              {
+ 121   4                                      k = 0;
+ 122   4                                      number_of_frame++;
+ 123   4                              }
+ 124   3                              if(number_of_frame == size_data/8)
+ 125   3                              {
+ 126   4                                      number_of_frame = 0;
+ 127   4                                      state = 0;
+ 128   4                              }
+ 129   3                      }
+ 130   2              }
+ 131   1      }
+ 132          
+ 133          void display_to_matrix_led(void)
+ 134          {
+ 135   1              u8 tab, i, k, number_of_frame;
+ 136   1              number_of_frame = size_data/8;
+ 137   1              for(i = 0; i < number_of_frame; i++)
+ 138   1              {
+ 139   2                      k = 0;
+ 140   2                      while(k < header[5])
+ 141   2                      {
+ 142   3                              for(tab=0;tab<8;tab++)
+ 143   3                              {
+ 144   4                                      Hc595SendByte(0x00); 
+ 145   4                                      COMMONPORTS = TAB[tab];             
+ 146   4                                      Hc595SendByte(frame_array[i][tab]);    
+ 147   4                                      delayMS(2);     
+ 148   4                              }
+ 149   3                      k++;
+ 150   3                      }
+ 151   2                      if(i >= number_of_frame - 1) i = -1;
+ 152   2              }
+ 153   1      }
+ 154          
+ 155          void main(void)
+ 156          {
+ 157   1              COMMONPORTS = 0x00;
+ 158   1              serial_init();
+ 159   1              test();
+ 160   1              while(1)
+ 161   1              {
+ 162   2                      display_to_matrix_led();
+ 163   2              }
+ 164   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    421    ----
+   CONSTANT SIZE    =      8    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     86       3
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      2       1
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

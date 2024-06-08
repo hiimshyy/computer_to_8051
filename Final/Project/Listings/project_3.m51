@@ -1,0 +1,323 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        12/12/2023  07:47:48  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE .\Objects\Project_3.obj TO .\Objects\project_3 PRINT (.\Listings\project_3.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\Project_3.obj (PROJECT_3)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  .\Objects\project_3 (PROJECT_3)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0003H     UNIT         _DATA_GROUP_
+                    000BH     0015H                  *** GAP ***
+            BIT     0020H.0   0000H.1   UNIT         ?BI?PROJECT_3
+                    0020H.1   0000H.7                *** GAP ***
+            DATA    0021H     0050H     UNIT         ?DT?PROJECT_3
+            IDATA   0071H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0020H     UNIT         ?PR?_DELAYMS?PROJECT_3
+            CODE    0023H     0003H     ABSOLUTE     
+            CODE    0026H     008CH     UNIT         ?C_C51STARTUP
+            CODE    00B2H     0063H     UNIT         ?PR?DISPLAY_TO_MATRIX_LED?PROJECT_3
+            CODE    0115H     0051H     UNIT         ?PR?CREATE_ARRAY?PROJECT_3
+            CODE    0166H     0026H     UNIT         ?PR?_HC595SENDBYTE?PROJECT_3
+            CODE    018CH     0022H     UNIT         ?PR?READ_SIZE_AND_FPS?PROJECT_3
+            CODE    01AEH     0022H     UNIT         ?PR?MAIN?PROJECT_3
+            CODE    01D0H     001DH     UNIT         ?PR?IS_HEADER?PROJECT_3
+            CODE    01EDH     001CH     UNIT         ?PR?TEST?PROJECT_3
+            CODE    0209H     001BH     UNIT         ?C_INITSEG
+            CODE    0224H     0010H     UNIT         ?PR?SERIAL_INIT?PROJECT_3
+            CODE    0234H     000BH     UNIT         ?PR?SERIAL_ISR?PROJECT_3
+            CODE    023FH     0008H     UNIT         ?CO?PROJECT_3
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\project_3 (PROJECT_3)
+
+
+SEGMENT                                       DATA_GROUP 
+  +--> CALLED SEGMENT                       START    LENGTH
+-----------------------------------------------------------
+?C_C51STARTUP                               -----    -----
+  +--> ?PR?MAIN?PROJECT_3
+  +--> ?C_INITSEG
+
+?PR?MAIN?PROJECT_3                          -----    -----
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/12/2023  07:47:48  PAGE 2
+
+
+  +--> ?PR?SERIAL_INIT?PROJECT_3
+  +--> ?PR?TEST?PROJECT_3
+  +--> ?PR?IS_HEADER?PROJECT_3
+  +--> ?PR?READ_SIZE_AND_FPS?PROJECT_3
+  +--> ?PR?CREATE_ARRAY?PROJECT_3
+  +--> ?PR?DISPLAY_TO_MATRIX_LED?PROJECT_3
+
+?PR?TEST?PROJECT_3                          -----    -----
+  +--> ?PR?_HC595SENDBYTE?PROJECT_3
+  +--> ?PR?_DELAYMS?PROJECT_3
+
+?PR?DISPLAY_TO_MATRIX_LED?PROJECT_3         0008H    0003H
+  +--> ?PR?_HC595SENDBYTE?PROJECT_3
+  +--> ?CO?PROJECT_3
+  +--> ?PR?_DELAYMS?PROJECT_3
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\project_3 (PROJECT_3)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        PROJECT_3
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  B:00B0H.6       PUBLIC        SRCLK
+  D:00B0H         PUBLIC        P3
+  B:00A8H.7       PUBLIC        EA
+  B:00A8H.4       PUBLIC        ES
+  C:0224H         PUBLIC        serial_init
+  B:0098H.0       PUBLIC        RI
+  B:0020H.0       PUBLIC        flag
+  C:01AEH         PUBLIC        main
+  C:01D0H         PUBLIC        is_header
+  B:00B0H.5       PUBLIC        RCLK
+  D:0099H         PUBLIC        SBUF
+  C:0003H         PUBLIC        _delayMS
+  D:0098H         PUBLIC        SCON
+  D:0021H         PUBLIC        end_data
+  D:0089H         PUBLIC        TMOD
+  D:0022H         PUBLIC        size_data
+  D:0024H         PUBLIC        size_data_high
+  C:01EDH         PUBLIC        test
+  D:0025H         PUBLIC        arr
+  D:0065H         PUBLIC        fps
+  D:0066H         PUBLIC        revData
+  D:008DH         PUBLIC        TH1
+  C:00B2H         PUBLIC        display_to_matrix_led
+  C:0234H         PUBLIC        serial_ISR
+  C:023FH         PUBLIC        TAB
+  B:0088H.6       PUBLIC        TR1
+  D:0067H         PUBLIC        i
+  B:00B0H.4       PUBLIC        SER
+  D:0068H         PUBLIC        size_data_low
+  C:0166H         PUBLIC        _Hc595SendByte
+  D:0069H         PUBLIC        ghc595_buf
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/12/2023  07:47:48  PAGE 3
+
+
+  C:0115H         PUBLIC        create_array
+  C:018CH         PUBLIC        read_size_and_fps
+  -------         PROC          SERIAL_INIT
+  C:0224H         LINE#         25
+  C:0224H         LINE#         28
+  C:0227H         LINE#         29
+  C:022AH         LINE#         30
+  C:022DH         LINE#         31
+  C:022FH         LINE#         32
+  C:0231H         LINE#         33
+  C:0233H         LINE#         34
+  -------         ENDPROC       SERIAL_INIT
+  -------         PROC          _HC595SENDBYTE
+  D:0007H         SYMBOL        dat
+  -------         DO            
+  D:0006H         SYMBOL        a
+  -------         ENDDO         
+  C:0166H         LINE#         36
+  C:0166H         LINE#         37
+  C:0166H         LINE#         39
+  C:0168H         LINE#         40
+  C:016AH         LINE#         41
+  C:016CH         LINE#         42
+  C:016CH         LINE#         43
+  C:0177H         LINE#         44
+  C:017BH         LINE#         46
+  C:017DH         LINE#         47
+  C:017EH         LINE#         48
+  C:017FH         LINE#         49
+  C:0181H         LINE#         50
+  C:0185H         LINE#         52
+  C:0187H         LINE#         53
+  C:0188H         LINE#         54
+  C:0189H         LINE#         55
+  C:018BH         LINE#         56
+  -------         ENDPROC       _HC595SENDBYTE
+  -------         PROC          _DELAYMS
+  D:0006H         SYMBOL        time
+  -------         DO            
+  D:0004H         SYMBOL        i
+  D:0002H         SYMBOL        j
+  -------         ENDDO         
+  C:0003H         LINE#         58
+  C:0003H         LINE#         59
+  C:0003H         LINE#         61
+  C:000DH         LINE#         62
+  C:0022H         LINE#         63
+  -------         ENDPROC       _DELAYMS
+  -------         PROC          TEST
+  -------         DO            
+  D:0001H         SYMBOL        i
+  -------         ENDDO         
+  C:01EDH         LINE#         64
+  C:01EDH         LINE#         65
+  C:01EDH         LINE#         67
+  C:01EFH         LINE#         68
+  C:01EFH         LINE#         69
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/12/2023  07:47:48  PAGE 4
+
+
+  C:01F4H         LINE#         70
+  C:01FDH         LINE#         71
+  C:0204H         LINE#         72
+  C:0208H         LINE#         73
+  -------         ENDPROC       TEST
+  -------         PROC          CREATE_ARRAY
+  -------         DO            
+  D:0006H         SYMBOL        i
+  D:0004H         SYMBOL        j
+  D:0001H         SYMBOL        number_of_frame
+  -------         ENDDO         
+  C:0115H         LINE#         89
+  C:0115H         LINE#         90
+  C:0115H         LINE#         93
+  C:011DH         LINE#         94
+  C:012BH         LINE#         95
+  C:0138H         LINE#         96
+  C:0138H         LINE#         97
+  C:013BH         LINE#         98
+  C:013EH         LINE#         99
+  C:013EH         LINE#         100
+  C:0140H         LINE#         101
+  C:014BH         LINE#         102
+  C:014EH         LINE#         103
+  C:0159H         LINE#         104
+  C:0160H         LINE#         105
+  C:0163H         LINE#         106
+  C:0165H         LINE#         107
+  -------         ENDPROC       CREATE_ARRAY
+  -------         PROC          DISPLAY_TO_MATRIX_LED
+  -------         DO            
+  D:0008H         SYMBOL        tab
+  D:0001H         SYMBOL        i
+  D:0009H         SYMBOL        k
+  D:000AH         SYMBOL        number_of_frame
+  -------         ENDDO         
+  C:00B2H         LINE#         109
+  C:00B2H         LINE#         110
+  C:00B2H         LINE#         112
+  C:00C1H         LINE#         113
+  C:00C9H         LINE#         114
+  C:00C9H         LINE#         115
+  C:00CCH         LINE#         116
+  C:00D3H         LINE#         117
+  C:00D3H         LINE#         118
+  C:00D6H         LINE#         119
+  C:00D6H         LINE#         120
+  C:00DBH         LINE#         121
+  C:00E3H         LINE#         122
+  C:00F2H         LINE#         123
+  C:00F9H         LINE#         124
+  C:0102H         LINE#         125
+  C:0104H         LINE#         126
+  C:0106H         LINE#         127
+  C:0111H         LINE#         128
+  C:0114H         LINE#         130
+  -------         ENDPROC       DISPLAY_TO_MATRIX_LED
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/12/2023  07:47:48  PAGE 5
+
+
+  -------         PROC          READ_SIZE_AND_FPS
+  C:018CH         LINE#         132
+  C:018CH         LINE#         133
+  C:018CH         LINE#         134
+  C:018FH         LINE#         135
+  C:018FH         LINE#         136
+  C:0191H         LINE#         137
+  C:0194H         LINE#         138
+  C:0197H         LINE#         139
+  C:019AH         LINE#         140
+  C:019AH         LINE#         141
+  C:019CH         LINE#         142
+  C:019FH         LINE#         144
+  C:01A2H         LINE#         145
+  C:01A5H         LINE#         146
+  C:01A5H         LINE#         147
+  C:01A7H         LINE#         148
+  C:01AAH         LINE#         149
+  C:01ADH         LINE#         150
+  C:01ADH         LINE#         151
+  C:01ADH         LINE#         152
+  C:01ADH         LINE#         153
+  -------         ENDPROC       READ_SIZE_AND_FPS
+  -------         PROC          SERIAL_ISR
+  C:0234H         LINE#         155
+  C:0234H         LINE#         157
+  C:0237H         LINE#         158
+  C:023AH         LINE#         159
+  C:023CH         LINE#         160
+  C:023EH         LINE#         161
+  C:023EH         LINE#         163
+  -------         ENDPROC       SERIAL_ISR
+  -------         PROC          IS_HEADER
+  C:01D0H         LINE#         164
+  C:01D0H         LINE#         165
+  C:01D0H         LINE#         166
+  C:01D3H         LINE#         167
+  C:01D3H         LINE#         168
+  C:01D8H         LINE#         169
+  C:01D8H         LINE#         170
+  C:01DAH         LINE#         171
+  C:01DDH         LINE#         172
+  C:01E2H         LINE#         173
+  C:01E2H         LINE#         174
+  C:01E4H         LINE#         175
+  C:01E7H         LINE#         176
+  C:01EAH         LINE#         177
+  C:01EAH         LINE#         178
+  C:01EAH         LINE#         179
+  C:01EAH         LINE#         180
+  C:01ECH         LINE#         181
+  -------         ENDPROC       IS_HEADER
+  -------         PROC          MAIN
+  C:01AEH         LINE#         183
+  C:01AEH         LINE#         184
+  C:01AEH         LINE#         185
+  C:01B1H         LINE#         186
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/12/2023  07:47:48  PAGE 6
+
+
+  C:01B4H         LINE#         187
+  C:01B7H         LINE#         188
+  C:01BAH         LINE#         189
+  C:01BAH         LINE#         190
+  C:01BAH         LINE#         191
+  C:01C0H         LINE#         192
+  C:01C0H         LINE#         193
+  C:01C3H         LINE#         194
+  C:01C6H         LINE#         195
+  C:01CBH         LINE#         196
+  C:01CBH         LINE#         197
+  C:01CEH         LINE#         198
+  C:01CEH         LINE#         199
+  C:01CEH         LINE#         200
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        PROJECT_3
+
+Program Size: data=92.1 xdata=0 code=583
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

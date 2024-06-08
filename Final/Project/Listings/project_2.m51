@@ -1,0 +1,266 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    12/07/2023  12:58:43  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\project_2.obj TO .\Objects\project_2 PRINT (.\Listings\project_2.m51) RAMSIZE (256
+>> )
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\project_2.obj (PROJECT_2)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  .\Objects\project_2 (PROJECT_2)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0014H     UNIT         ?DT?PROJECT_2
+            DATA    001CH     0001H     UNIT         _DATA_GROUP_
+                    001DH     0003H                  *** GAP ***
+            BIT     0020H.0   0000H.1   UNIT         ?BI?PROJECT_2
+                    0020H.1   0000H.7                *** GAP ***
+            IDATA   0021H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0008H     UNIT         ?PR?_SERIAL_SEND?PROJECT_2
+            CODE    000BH     0003H     ABSOLUTE     
+            CODE    000EH     0010H     UNIT         ?PR?SERIAL_INIT?PROJECT_2
+                    001EH     0005H                  *** GAP ***
+            CODE    0023H     0003H     ABSOLUTE     
+            CODE    0026H     008CH     UNIT         ?C_C51STARTUP
+            CODE    00B2H     004CH     UNIT         ?PR?DISPLAY?PROJECT_2
+            CODE    00FEH     002EH     UNIT         ?PR?CHECK_HEADER?PROJECT_2
+            CODE    012CH     002BH     UNIT         ?PR?SERIAL_ISR?PROJECT_2
+            CODE    0157H     002BH     UNIT         ?PR?_HC595SENDBYTE?PROJECT_2
+            CODE    0182H     0020H     UNIT         ?PR?_DELAYMS?PROJECT_2
+            CODE    01A2H     001FH     UNIT         ?C_INITSEG
+            CODE    01C1H     001AH     UNIT         ?PR?MAIN?PROJECT_2
+            CODE    01DBH     0009H     UNIT         ?PR?ISR_TIMER0?PROJECT_2
+            CODE    01E4H     0008H     UNIT         ?CO?PROJECT_2
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\project_2 (PROJECT_2)
+
+
+SEGMENT                                DATA_GROUP 
+  +--> CALLED SEGMENT                START    LENGTH
+----------------------------------------------------
+?C_C51STARTUP                        -----    -----
+  +--> ?PR?MAIN?PROJECT_2
+  +--> ?C_INITSEG
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/07/2023  12:58:43  PAGE 2
+
+
+
+?PR?MAIN?PROJECT_2                   -----    -----
+  +--> ?PR?SERIAL_INIT?PROJECT_2
+  +--> ?PR?CHECK_HEADER?PROJECT_2
+  +--> ?PR?_SERIAL_SEND?PROJECT_2
+  +--> ?PR?DISPLAY?PROJECT_2
+
+?PR?DISPLAY?PROJECT_2                001CH    0001H
+  +--> ?PR?_HC595SENDBYTE?PROJECT_2
+  +--> ?CO?PROJECT_2
+  +--> ?PR?_DELAYMS?PROJECT_2
+  +--> ?PR?_SERIAL_SEND?PROJECT_2
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\project_2 (PROJECT_2)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        PROJECT_2
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  B:00B0H.6       PUBLIC        SRCLK
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  B:00A8H.7       PUBLIC        EA
+  D:0008H         PUBLIC        dcount
+  B:00A8H.4       PUBLIC        ES
+  C:000EH         PUBLIC        serial_init
+  B:0098H.0       PUBLIC        RI
+  B:0020H.0       PUBLIC        flag
+  B:0098H.1       PUBLIC        TI
+  C:01DBH         PUBLIC        ISR_timer0
+  C:01C1H         PUBLIC        main
+  B:00B0H.5       PUBLIC        RCLK
+  D:0099H         PUBLIC        SBUF
+  C:0182H         PUBLIC        _delayMS
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  D:0009H         PUBLIC        dem
+  D:000AH         PUBLIC        size_data
+  D:000BH         PUBLIC        arr
+  D:0013H         PUBLIC        fps
+  D:0014H         PUBLIC        revData
+  D:008CH         PUBLIC        TH0
+  D:008DH         PUBLIC        TH1
+  C:00FEH         PUBLIC        check_header
+  D:008AH         PUBLIC        TL0
+  C:012CH         PUBLIC        serial_ISR
+  C:01E4H         PUBLIC        TAB
+  B:0088H.6       PUBLIC        TR1
+  B:00A0H.0       PUBLIC        led1
+  B:00B0H.4       PUBLIC        SER
+  D:0015H         PUBLIC        header
+  C:0003H         PUBLIC        _serial_Send
+  C:0157H         PUBLIC        _Hc595SendByte
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/07/2023  12:58:43  PAGE 3
+
+
+  C:00B2H         PUBLIC        display
+  -------         PROC          SERIAL_INIT
+  C:000EH         LINE#         25
+  C:000EH         LINE#         28
+  C:0011H         LINE#         29
+  C:0014H         LINE#         30
+  C:0017H         LINE#         31
+  C:0019H         LINE#         32
+  C:001BH         LINE#         33
+  C:001DH         LINE#         34
+  -------         ENDPROC       SERIAL_INIT
+  -------         PROC          ISR_TIMER0
+  C:01DBH         LINE#         37
+  C:01DBH         LINE#         39
+  C:01DEH         LINE#         40
+  C:01E1H         LINE#         41
+  C:01E3H         LINE#         42
+  -------         ENDPROC       ISR_TIMER0
+  -------         PROC          _DELAYMS
+  D:0006H         SYMBOL        time
+  -------         DO            
+  D:0004H         SYMBOL        i
+  D:0002H         SYMBOL        j
+  -------         ENDDO         
+  C:0182H         LINE#         44
+  C:0182H         LINE#         45
+  C:0182H         LINE#         47
+  C:018CH         LINE#         48
+  C:01A1H         LINE#         49
+  -------         ENDPROC       _DELAYMS
+  -------         PROC          _SERIAL_SEND
+  D:0007H         SYMBOL        x
+  C:0003H         LINE#         51
+  C:0003H         LINE#         52
+  C:0005H         LINE#         53
+  C:0008H         LINE#         54
+  C:000AH         LINE#         55
+  -------         ENDPROC       _SERIAL_SEND
+  -------         PROC          SERIAL_ISR
+  C:012CH         LINE#         56
+  C:0135H         LINE#         58
+  C:0138H         LINE#         59
+  C:013BH         LINE#         60
+  C:013DH         LINE#         61
+  C:013FH         LINE#         62
+  C:0146H         LINE#         63
+  C:0148H         LINE#         64
+  C:014EH         LINE#         65
+  C:014EH         LINE#         66
+  C:0150H         LINE#         67
+  C:0150H         LINE#         68
+  C:0150H         LINE#         70
+  -------         ENDPROC       SERIAL_ISR
+  -------         PROC          CHECK_HEADER
+  -------         DO            
+  D:0006H         SYMBOL        i
+  D:0007H         SYMBOL        check
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/07/2023  12:58:43  PAGE 4
+
+
+  -------         ENDDO         
+  C:00FEH         LINE#         72
+  C:00FEH         LINE#         73
+  C:00FEH         LINE#         75
+  C:0100H         LINE#         76
+  C:010CH         LINE#         77
+  C:010CH         LINE#         78
+  C:011AH         LINE#         79
+  C:011AH         LINE#         80
+  C:011CH         LINE#         81
+  C:011DH         LINE#         82
+  C:011DH         LINE#         83
+  C:0120H         LINE#         84
+  C:0125H         LINE#         85
+  C:0128H         LINE#         86
+  C:012BH         LINE#         87
+  C:012BH         LINE#         88
+  C:012BH         LINE#         89
+  -------         ENDPROC       CHECK_HEADER
+  -------         PROC          _HC595SENDBYTE
+  D:0007H         SYMBOL        dat
+  -------         DO            
+  D:0006H         SYMBOL        a
+  -------         ENDDO         
+  C:0157H         LINE#         91
+  C:0157H         LINE#         92
+  C:0157H         LINE#         94
+  C:0159H         LINE#         95
+  C:015BH         LINE#         96
+  C:0167H         LINE#         97
+  C:0167H         LINE#         98
+  C:0172H         LINE#         99
+  C:0176H         LINE#         100
+  C:0178H         LINE#         101
+  C:017AH         LINE#         102
+  C:017DH         LINE#         103
+  C:017FH         LINE#         104
+  C:0181H         LINE#         105
+  -------         ENDPROC       _HC595SENDBYTE
+  -------         PROC          DISPLAY
+  -------         DO            
+  D:0001H         SYMBOL        tab
+  D:001CH         SYMBOL        i
+  -------         ENDDO         
+  C:00B2H         LINE#         106
+  C:00B2H         LINE#         107
+  C:00B2H         LINE#         109
+  C:00C0H         LINE#         110
+  C:00C0H         LINE#         111
+  C:00CCH         LINE#         112
+  C:00CCH         LINE#         113
+  C:00D1H         LINE#         114
+  C:00D8H         LINE#         115
+  C:00E1H         LINE#         116
+  C:00E8H         LINE#         117
+  C:00EBH         LINE#         119
+  C:00F4H         LINE#         120
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/07/2023  12:58:43  PAGE 5
+
+
+  C:00F9H         LINE#         121
+  C:00FDH         LINE#         122
+  -------         ENDPROC       DISPLAY
+  -------         PROC          MAIN
+  C:01C1H         LINE#         124
+  C:01C1H         LINE#         125
+  C:01C1H         LINE#         127
+  C:01C3H         LINE#         128
+  C:01C6H         LINE#         129
+  C:01C6H         LINE#         130
+  C:01C6H         LINE#         131
+  C:01CCH         LINE#         132
+  C:01CCH         LINE#         133
+  C:01D1H         LINE#         134
+  C:01D6H         LINE#         135
+  C:01D9H         LINE#         136
+  C:01D9H         LINE#         137
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        PROJECT_2
+
+Program Size: data=30.1 xdata=0 code=487
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

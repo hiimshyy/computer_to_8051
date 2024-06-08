@@ -1,0 +1,292 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    12/05/2023  13:52:03  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\image_video_to_led_matrix.obj TO .\Objects\Image_video_to_led_matrix PRINT (.\List
+>> ings\Image_video_to_led_matrix.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\image_video_to_led_matrix.obj (IMAGE_VIDEO_TO_LED_MATRIX)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?COPY)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  .\Objects\Image_video_to_led_matrix (IMAGE_VIDEO_TO_LED_MATRIX)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     000AH     UNIT         ?DT?LOOP?IMAGE_VIDEO_TO_LED_MATRIX
+            DATA    0012H     000AH     UNIT         ?DT?IMAGE_VIDEO_TO_LED_MATRIX
+            DATA    001CH     0002H     UNIT         _DATA_GROUP_
+                    001EH     0002H                  *** GAP ***
+            BIT     0020H.0   0000H.1   UNIT         ?BI?LOOP?IMAGE_VIDEO_TO_LED_MATRIX
+            BIT     0020H.1   0000H.1   UNIT         ?BI?IMAGE_VIDEO_TO_LED_MATRIX
+                    0020H.2   0000H.6                *** GAP ***
+            IDATA   0021H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     001FH     UNIT         ?PR?_HANDLEDATA?IMAGE_VIDEO_TO_LED_MATRIX
+                    0022H     0001H                  *** GAP ***
+            CODE    0023H     0003H     ABSOLUTE     
+            CODE    0026H     00F6H     UNIT         ?C?LIB_CODE
+            CODE    011CH     008CH     UNIT         ?C_C51STARTUP
+            CODE    01A8H     0056H     UNIT         ?PR?LOOP?IMAGE_VIDEO_TO_LED_MATRIX
+            CODE    01FEH     0039H     UNIT         ?PR?_DELAYMS?IMAGE_VIDEO_TO_LED_MATRIX
+            CODE    0237H     002DH     UNIT         ?PR?MAIN?IMAGE_VIDEO_TO_LED_MATRIX
+            CODE    0264H     002BH     UNIT         ?PR?_HC595SENDBYTE?IMAGE_VIDEO_TO_LED_MATRIX
+            CODE    028FH     0013H     UNIT         ?PR?DISPLAY?IMAGE_VIDEO_TO_LED_MATRIX
+            CODE    02A2H     0010H     UNIT         ?PR?SERIAL_INIT?IMAGE_VIDEO_TO_LED_MATRIX
+            CODE    02B2H     0010H     UNIT         ?CO?IMAGE_VIDEO_TO_LED_MATRIX
+            CODE    02C2H     000DH     UNIT         ?C_INITSEG
+            CODE    02CFH     000BH     UNIT         ?PR?SERIAL_ISR?IMAGE_VIDEO_TO_LED_MATRIX
+            CODE    02DAH     0008H     UNIT         ?PR?_SERIAL_SEND?IMAGE_VIDEO_TO_LED_MATRIX
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\Image_video_to_led_matrix (IMAGE_VIDEO_TO_LED_MATRIX)
+
+
+SEGMENT                                            DATA_GROUP 
+  +--> CALLED SEGMENT                            START    LENGTH
+----------------------------------------------------------------
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/05/2023  13:52:03  PAGE 2
+
+
+?C_C51STARTUP                                    -----    -----
+  +--> ?PR?MAIN?IMAGE_VIDEO_TO_LED_MATRIX
+  +--> ?C_INITSEG
+
+?PR?MAIN?IMAGE_VIDEO_TO_LED_MATRIX               001CH    0002H
+  +--> ?PR?SERIAL_INIT?IMAGE_VIDEO_TO_LED_MA...
+  +--> ?PR?_DELAYMS?IMAGE_VIDEO_TO_LED_MATRIX
+
+?PR?_DELAYMS?IMAGE_VIDEO_TO_LED_MATRIX           -----    -----
+  +--> ?PR?_HC595SENDBYTE?IMAGE_VIDEO_TO_LED...
+  +--> ?CO?IMAGE_VIDEO_TO_LED_MATRIX
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\Image_video_to_led_matrix (IMAGE_VIDEO_TO_LED_MATRIX)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        IMAGE_VIDEO_TO_LED_MATRIX
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  B:00B0H.6       PUBLIC        SRCLK
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  B:00A8H.7       PUBLIC        EA
+  D:0012H         PUBLIC        dcount
+  B:00A8H.4       PUBLIC        ES
+  C:02A2H         PUBLIC        serial_init
+  B:0098H.0       PUBLIC        RI
+  B:0020H.1       PUBLIC        flag
+  B:0098H.1       PUBLIC        TI
+  C:0237H         PUBLIC        main
+  B:00C8H.5       PUBLIC        RCLK
+  D:0099H         PUBLIC        SBUF
+  C:0217H         PUBLIC        _delayMS
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  C:01A8H         PUBLIC        loop
+  C:02BAH         SYMBOL        _?ix1000
+  D:0013H         PUBLIC        arr
+  D:001BH         PUBLIC        revData
+  D:008DH         PUBLIC        TH1
+  C:02CFH         PUBLIC        serial_ISR
+  C:02B2H         PUBLIC        TAB
+  B:0088H.6       PUBLIC        TR1
+  B:00A0H.0       PUBLIC        led1
+  B:00B0H.4       PUBLIC        SER
+  C:0003H         PUBLIC        _handleData
+  C:02DAH         PUBLIC        _serial_Send
+  C:0264H         PUBLIC        _Hc595SendByte
+  C:028FH         PUBLIC        display
+  -------         PROC          SERIAL_INIT
+  C:02A2H         LINE#         21
+  C:02A2H         LINE#         24
+  C:02A5H         LINE#         25
+  C:02A8H         LINE#         26
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/05/2023  13:52:03  PAGE 3
+
+
+  C:02ABH         LINE#         27
+  C:02ADH         LINE#         28
+  C:02AFH         LINE#         29
+  C:02B1H         LINE#         30
+  -------         ENDPROC       SERIAL_INIT
+  -------         PROC          L?0053
+  -------         ENDPROC       L?0053
+  -------         PROC          _DELAYMS
+  D:0006H         SYMBOL        time
+  -------         DO            
+  D:0004H         SYMBOL        i
+  D:0002H         SYMBOL        j
+  -------         ENDDO         
+  C:0217H         LINE#         32
+  C:0217H         LINE#         33
+  C:0217H         LINE#         35
+  C:0221H         LINE#         36
+  C:0224H         LINE#         37
+  C:0224H         LINE#         39
+  C:0236H         LINE#         40
+  -------         ENDPROC       _DELAYMS
+  -------         PROC          _SERIAL_SEND
+  D:0007H         SYMBOL        x
+  C:02DAH         LINE#         42
+  C:02DAH         LINE#         43
+  C:02DCH         LINE#         44
+  C:02DFH         LINE#         45
+  C:02E1H         LINE#         46
+  -------         ENDPROC       _SERIAL_SEND
+  -------         PROC          SERIAL_ISR
+  C:02CFH         LINE#         48
+  C:02CFH         LINE#         50
+  C:02D2H         LINE#         51
+  C:02D5H         LINE#         52
+  C:02D7H         LINE#         53
+  C:02D9H         LINE#         54
+  C:02D9H         LINE#         56
+  -------         ENDPROC       SERIAL_ISR
+  -------         PROC          _HC595SENDBYTE
+  D:0007H         SYMBOL        dat
+  -------         DO            
+  D:0006H         SYMBOL        a
+  -------         ENDDO         
+  C:0264H         LINE#         58
+  C:0264H         LINE#         59
+  C:0264H         LINE#         61
+  C:0266H         LINE#         62
+  C:0268H         LINE#         63
+  C:0274H         LINE#         64
+  C:0274H         LINE#         65
+  C:027FH         LINE#         66
+  C:0283H         LINE#         68
+  C:0285H         LINE#         70
+  C:0287H         LINE#         71
+  C:028AH         LINE#         73
+  C:028CH         LINE#         75
+  C:028EH         LINE#         76
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/05/2023  13:52:03  PAGE 4
+
+
+  -------         ENDPROC       _HC595SENDBYTE
+  -------         PROC          DISPLAY
+  -------         DO            
+  D:0001H         SYMBOL        tab
+  -------         ENDDO         
+  C:028FH         LINE#         77
+  C:028FH         LINE#         78
+  C:028FH         LINE#         80
+  C:029BH         LINE#         81
+  C:029BH         LINE#         82
+  C:029BH         LINE#         83
+  C:029BH         LINE#         84
+  C:029BH         LINE#         85
+  C:029EH         LINE#         86
+  C:02A1H         LINE#         87
+  -------         ENDPROC       DISPLAY
+  -------         PROC          _HANDLEDATA
+  D:0007H         SYMBOL        SIZE
+  -------         DO            
+  D:0006H         SYMBOL        i
+  -------         ENDDO         
+  C:0003H         LINE#         88
+  C:0003H         LINE#         89
+  C:0003H         LINE#         92
+  C:000AH         LINE#         93
+  C:000AH         LINE#         94
+  C:0010H         LINE#         95
+  C:0013H         LINE#         96
+  C:0016H         LINE#         97
+  C:0021H         LINE#         98
+  -------         ENDPROC       _HANDLEDATA
+  -------         PROC          LOOP
+  -------         DO            
+  D:0008H         SYMBOL        Size
+  B:0020H.0       SYMBOL        check_header
+  D:0009H         SYMBOL        i
+  D:000AH         SYMBOL        header_code
+  -------         ENDDO         
+  C:01A8H         LINE#         99
+  C:01A8H         LINE#         100
+  C:01A8H         LINE#         101
+  C:01ABH         LINE#         102
+  C:01ADH         LINE#         103
+  C:01AFH         LINE#         105
+  C:01C0H         LINE#         106
+  C:01C3H         LINE#         107
+  C:01C3H         LINE#         108
+  C:01D1H         LINE#         109
+  C:01D1H         LINE#         110
+  C:01D4H         LINE#         111
+  C:01D4H         LINE#         112
+  C:01DEH         LINE#         113
+  C:01DEH         LINE#         114
+  C:01E0H         LINE#         115
+  C:01E2H         LINE#         116
+  C:01E4H         LINE#         117
+  C:01E4H         LINE#         118
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  12/05/2023  13:52:03  PAGE 5
+
+
+  C:01E6H         LINE#         119
+  C:01E9H         LINE#         120
+  C:01E9H         LINE#         121
+  C:01EDH         LINE#         122
+  C:01F0H         LINE#         123
+  C:01F3H         LINE#         124
+  C:01F3H         LINE#         126
+  C:01F6H         LINE#         127
+  C:01F6H         LINE#         128
+  C:01F8H         LINE#         129
+  C:01FDH         LINE#         130
+  C:01FDH         LINE#         131
+  -------         ENDPROC       LOOP
+  -------         PROC          MAIN
+  -------         DO            
+  D:0001H         SYMBOL        tab
+  D:001CH         SYMBOL        i
+  -------         ENDDO         
+  C:0237H         LINE#         133
+  C:0237H         LINE#         134
+  C:0237H         LINE#         137
+  C:023AH         LINE#         142
+  C:023AH         LINE#         143
+  C:023AH         LINE#         144
+  C:023FH         LINE#         145
+  C:023FH         LINE#         146
+  C:024BH         LINE#         147
+  C:024BH         LINE#         148
+  C:024BH         LINE#         149
+  C:024BH         LINE#         150
+  C:024BH         LINE#         151
+  C:024EH         LINE#         152
+  C:0251H         LINE#         153
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        IMAGE_VIDEO_TO_LED_MATRIX
+
+  -------         MODULE        ?C?COPY
+  C:00F6H         PUBLIC        ?C?COPY
+  -------         ENDMOD        ?C?COPY
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY?IMAGE_VIDEO_TO_LED_MATRIX
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?LOOP?IMAGE_VIDEO_TO_LED_MATRIX
+
+Program Size: data=31.2 xdata=0 code=737
+LINK/LOCATE RUN COMPLETE.  2 WARNING(S),  0 ERROR(S)
